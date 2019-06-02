@@ -21,6 +21,11 @@ namespace Models
             ValuableContainer = valuable;
         }
 
+        public Container()
+        {
+
+        }
+
         public void AddWeight(int weight)
         {
             TopWeight += weight;
