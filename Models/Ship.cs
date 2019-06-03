@@ -4,14 +4,19 @@
     {
         public int Length { get; }
         public int Width { get; }
+        public int Left { get; set; }
+        public int Right { get; set; }
+        public int Median { get; set; }
+        public int Weight { get; set; }
 
-        public StackOfContainer[,] StackOfContainer { get; private set; }
+        public Stack[,] Stack { get; private set; }
 
         public Ship(int width, int length)
         {
             Length = length;
             Width = width;
-            StackOfContainer = new StackOfContainer[width, length];
+            Stack = new Stack[width, length];
+            Weight = 1000000;
 
             for (int i = 0; i < width; i++)
             {
@@ -20,17 +25,17 @@
                     if (j == 0)
                     {
                         //De stapel van containers laten weten dat dit de 1e rij is.
-                        StackOfContainer[i, j] = new StackOfContainer(true, false);
+                        Stack[i, j] = new Stack(true, false);
                     }
                     else if (j == length - 1)
                     {
                         //De stapel van containers laten weten dat dit de laatste rij is.
-                        StackOfContainer[i, j] = new StackOfContainer(false, true);
+                        Stack[i, j] = new Stack(false, true);
                     }
                     else
                     {
                         //De stapel van containers laten weten dat dit de middelste rij is.
-                        StackOfContainer[i, j] = new StackOfContainer(false, false);
+                        Stack[i, j] = new Stack(false, false);
                     }
                 }
             }
@@ -44,7 +49,7 @@
             {
                 for (int j = 0; j < Length; j++)
                 {
-                    weight += StackOfContainer[i, j].GetWeight();
+                    weight += Stack[i, j].GetWeight();
                 }
             }
             return weight;
@@ -56,7 +61,7 @@
             var left = 0;
             var right = 0;
 
-            var width = StackOfContainer.GetLength(0);
+            var width = Stack.GetLength(0);
             var mid = width / 2;
 
             var isUneven = width % 2 != 0;
@@ -93,29 +98,6 @@
                     right += container.Weight;
                 }
             }
-
-            //if (isUneven)
-            //{
-            //    if (column < mid + 1)
-            //    {
-            //        left += container.Weight;
-            //    }
-            //    else if (column > mid + 1)
-            //    {
-            //        right += container.Weight;
-            //    }
-            //}
-            //else
-            //{
-            //    if (column < mid)
-            //    {
-            //        left += container.Weight;
-            //    }
-            //    else
-            //    {
-            //        right += container.Weight;
-            //    }
-            //}
 
             var weight = left + right;
 
@@ -160,7 +142,7 @@
                 for (var j = 0; j < Length; j++)
                 {
                     //Contoleerd of de container kan worden toegevoegd.
-                    if (StackOfContainer[i, j].AddContainer(container)) return true;
+                    if (Stack[i, j].AddContainer(container)) return true;
                 }
             }
 

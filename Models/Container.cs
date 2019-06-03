@@ -8,10 +8,10 @@ namespace Models
 {
     public class Container
     {
-        public int Weight { get; }
+        public int Weight { get; set; }
         public int TopWeight { get; private set; }
-        public bool CooledContainer { get; }
-        public bool ValuableContainer { get; }
+        public bool CooledContainer { get; set; }
+        public bool ValuableContainer { get; set; }
 
         public Container(int weight, bool valuable, bool cooled)
         {

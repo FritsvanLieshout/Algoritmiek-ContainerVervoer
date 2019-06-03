@@ -49,13 +49,23 @@
             this.btnAddContainer = new System.Windows.Forms.Button();
             this.nudContainerWeight = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.lbSortedContainers = new System.Windows.Forms.ListBox();
+            this.lbSortedContainersFront = new System.Windows.Forms.ListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbSortedContainersMid = new System.Windows.Forms.ListBox();
+            this.lbSortedContainersBack = new System.Windows.Forms.ListBox();
             this.ConfigShip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLength)).BeginInit();
             this.InfoShip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudContainerWeight)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // ConfigShip
@@ -286,20 +296,82 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Weight:";
             // 
-            // lbSortedContainers
+            // lbSortedContainersFront
             // 
-            this.lbSortedContainers.FormattingEnabled = true;
-            this.lbSortedContainers.Location = new System.Drawing.Point(12, 334);
-            this.lbSortedContainers.Name = "lbSortedContainers";
-            this.lbSortedContainers.Size = new System.Drawing.Size(353, 212);
-            this.lbSortedContainers.TabIndex = 14;
+            this.lbSortedContainersFront.FormattingEnabled = true;
+            this.lbSortedContainersFront.ItemHeight = 16;
+            this.lbSortedContainersFront.Location = new System.Drawing.Point(6, 21);
+            this.lbSortedContainersFront.Name = "lbSortedContainersFront";
+            this.lbSortedContainersFront.Size = new System.Drawing.Size(282, 180);
+            this.lbSortedContainersFront.TabIndex = 14;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.groupBox5);
+            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(13, 326);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(941, 242);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Ship";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbSortedContainersFront);
+            this.groupBox3.Location = new System.Drawing.Point(7, 22);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(294, 214);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Front";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lbSortedContainersMid);
+            this.groupBox4.Location = new System.Drawing.Point(316, 22);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(294, 214);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Mid";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lbSortedContainersBack);
+            this.groupBox5.Location = new System.Drawing.Point(625, 22);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(294, 214);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Back";
+            // 
+            // lbSortedContainersMid
+            // 
+            this.lbSortedContainersMid.FormattingEnabled = true;
+            this.lbSortedContainersMid.ItemHeight = 16;
+            this.lbSortedContainersMid.Location = new System.Drawing.Point(6, 21);
+            this.lbSortedContainersMid.Name = "lbSortedContainersMid";
+            this.lbSortedContainersMid.Size = new System.Drawing.Size(282, 180);
+            this.lbSortedContainersMid.TabIndex = 15;
+            // 
+            // lbSortedContainersBack
+            // 
+            this.lbSortedContainersBack.FormattingEnabled = true;
+            this.lbSortedContainersBack.ItemHeight = 16;
+            this.lbSortedContainersBack.Location = new System.Drawing.Point(6, 21);
+            this.lbSortedContainersBack.Name = "lbSortedContainersBack";
+            this.lbSortedContainersBack.Size = new System.Drawing.Size(282, 180);
+            this.lbSortedContainersBack.TabIndex = 16;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 580);
-            this.Controls.Add(this.lbSortedContainers);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.InfoShip);
             this.Controls.Add(this.ConfigShip);
@@ -315,6 +387,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudContainerWeight)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -342,7 +418,13 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListBox lbContainers;
         private System.Windows.Forms.Button btnSort;
-        private System.Windows.Forms.ListBox lbSortedContainers;
+        private System.Windows.Forms.ListBox lbSortedContainersFront;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListBox lbSortedContainersBack;
+        private System.Windows.Forms.ListBox lbSortedContainersMid;
     }
 }
 

@@ -3,18 +3,26 @@ using System.Linq;
 
 namespace Models
 {
-    public class StackOfContainer
+    public class Stack
     {
-        public bool Row1 { get; }
-        public bool Row2 { get; }
+        public bool FrontRow { get; }
+        public bool BackRow { get; }
         public bool CooledContainer { get; }
         public List<Container> Containers { get; }
 
-        public StackOfContainer(bool row1, bool row2)
+        public Stack(bool frontRow, bool backRow)
         {
-            Row1 = row1;
-            Row2 = row2;
-            CooledContainer = row2;
+            FrontRow = frontRow;
+            BackRow = backRow;
+            CooledContainer = frontRow;
+            Containers = new List<Container>();
+        }
+
+        public Stack()
+        {
+            FrontRow = false;
+            BackRow = false;
+            CooledContainer = false;
             Containers = new List<Container>();
         }
 
@@ -44,7 +52,7 @@ namespace Models
 
         public bool IsContainerAllowed(Container container)
         {
-            if (container.ValuableContainer && !Row1 && !Row2) return false;
+            if (container.ValuableContainer && !FrontRow && !BackRow) return false;
 
             if (container.CooledContainer && !CooledContainer) return false;
 
