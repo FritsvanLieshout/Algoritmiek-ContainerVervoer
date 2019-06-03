@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     public class Container
     {
@@ -23,7 +17,6 @@ namespace Models
 
         public Container()
         {
-
         }
 
         public void AddWeight(int weight)
@@ -33,7 +26,7 @@ namespace Models
 
         public override string ToString()
         {
-            return "Weight: " + Weight + ", Cooled: " + CooledContainer  + ", Valuable: " + ValuableContainer;
+            return "Weight: " + Weight + ", Cooled: " + CooledContainer + ", Valuable: " + ValuableContainer;
         }
     }
 }

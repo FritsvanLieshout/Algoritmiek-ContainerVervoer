@@ -29,7 +29,6 @@ namespace Logic
             return weight;
         }
 
-
         public bool IsUneven()
         {
             var width = Ship.Stack.GetLength(0);
@@ -69,7 +68,6 @@ namespace Logic
             }
 
             return percDifference;
-
         }
 
         public bool CheckBalance(Container container, int col)
@@ -115,7 +113,7 @@ namespace Logic
             //Voor elk kolom op het schip
             for (var i = 0; i < Ship.Width; i++)
             {
-                //Controleerd of het schip zijn balans houdt, als de container wordt toegevoegd aan de stapel 
+                //Controleerd of het schip zijn balans houdt, als de container wordt toegevoegd aan de stapel
                 if (!CheckBalance(container, i)) continue;
 
                 //Voor elke rij in de huidige kolom op het schip
@@ -129,7 +127,7 @@ namespace Logic
             return false;
         }*/
 
-        public IEnumerable<Ship> SortContainers(IEnumerable<Container> containers)
+        public Ship SortContainers(IEnumerable<Container> containers)
         {
             //Sorteed de containers op gekoeld
             var sortedContainers = containers.OrderBy(e => e.CooledContainer).ToList();
@@ -145,8 +143,7 @@ namespace Logic
                     UnSortedContainers.Remove(container);
                 }
             }
-            yield return Ship;
-            Ship = new Ship(5, 10);
+           return Ship;
         }
     }
 }

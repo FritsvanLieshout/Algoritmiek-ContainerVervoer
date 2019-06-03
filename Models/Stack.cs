@@ -5,23 +5,23 @@ namespace Models
 {
     public class Stack
     {
-        public bool FrontRow { get; }
-        public bool BackRow { get; }
+        public bool FirstRow { get; }
+        public bool LastRow { get; }
         public bool CooledContainer { get; }
         public List<Container> Containers { get; }
 
-        public Stack(bool frontRow, bool backRow)
+        public Stack(bool first, bool last)
         {
-            FrontRow = frontRow;
-            BackRow = backRow;
-            CooledContainer = frontRow;
+            FirstRow = first;
+            LastRow = last;
+            CooledContainer = first;
             Containers = new List<Container>();
         }
 
         public Stack()
         {
-            FrontRow = false;
-            BackRow = false;
+            FirstRow = false;
+            LastRow = false;
             CooledContainer = false;
             Containers = new List<Container>();
         }
@@ -52,7 +52,7 @@ namespace Models
 
         public bool IsContainerAllowed(Container container)
         {
-            if (container.ValuableContainer && !FrontRow && !BackRow) return false;
+            if (container.ValuableContainer && !FirstRow && !LastRow) return false;
 
             if (container.CooledContainer && !CooledContainer) return false;
 
@@ -74,6 +74,11 @@ namespace Models
 
             Containers.Add(container);
             return true;
+        }
+
+        public override string ToString()
+        {
+            return Containers.Count.ToString() + ", " + FirstRow.ToString() + ", " + LastRow.ToString();
         }
     }
 }

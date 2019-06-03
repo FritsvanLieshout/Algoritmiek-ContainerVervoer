@@ -4,9 +4,10 @@
     {
         public int Length { get; }
         public int Width { get; }
-        public int Left { get; set; }
-        public int Right { get; set; }
-        public int Median { get; set; }
+
+        //public int Left { get; set; }
+        //public int Right { get; set; }
+        //public int Median { get; set; }
         public int Weight { get; set; }
 
         public Stack[,] Stack { get; private set; }
@@ -58,8 +59,8 @@
         //Controleerd bij het toevoegen van een container op de huidige kolom of het schip zijn balans houdt.
         public bool CheckBalance(Container container, int col)
         {
-            var left = 0;
-            var right = 0;
+            int left;
+            int right;
 
             var width = Stack.GetLength(0);
             var mid = width / 2;
@@ -101,9 +102,9 @@
 
             var weight = left + right;
 
-            var percLeft = 0;
-            var percRight = 0;
-            var percDifference = 0;
+            int percLeft;
+            int percRight;
+            int percDifference;
 
             if (weight != 0)
             {
@@ -135,7 +136,7 @@
             //Voor elk kolom op het schip
             for (var i = 0; i < Width; i++)
             {
-                //Controleerd of het schip zijn balans houdt, als de container wordt toegevoegd aan de stapel 
+                //Controleerd of het schip zijn balans houdt, als de container wordt toegevoegd aan de stapel
                 if (!CheckBalance(container, i)) continue;
 
                 //Voor elke rij in de huidige kolom op het schip
