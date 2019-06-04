@@ -10,9 +10,9 @@ namespace Logic
 
         public List<Container> UnSortedContainers { get; private set; } = new List<Container>();
 
-        public ShipLogic(int width, int length)
+        public ShipLogic(int width, int length, int weight)
         {
-            Ship = new Ship(width, length);
+            Ship = new Ship(width, length, weight);
         }
 
         /*public int GetColumnsWeight(int col1, int col2)
@@ -127,12 +127,18 @@ namespace Logic
             return false;
         }*/
 
-        public Ship SortContainers(IEnumerable<Container> containers)
+        public Ship SortContainers(List<Container> containers)
         {
-            //Sorteed de containers op gekoeld
-            var sortedContainers = containers.OrderBy(e => e.CooledContainer).ToList();
-            //Sorteed de containers op waardevol
-            sortedContainers = sortedContainers.OrderBy(e => e.ValuableContainer).ToList();
+            var sortedContainers = containers.Where(c => c.CooledContainer).OrderByDescending(c => c.Weight).ToList();
+
+            sortedContainers.AddRange(containers.Where(e => e.ValuableContainer == false && e.CooledContainer == false).OrderByDescending(c => c.Weight).ToList());
+
+            sortedContainers.AddRange(containers.Where(e => e.ValuableContainer).OrderByDescending(c => c.Weight).ToList());
+            //var sortedContainers = containers.OrderBy(e => e.CooledContainer).ToList();
+            //sortedContainers = sortedContainers.OrderBy(e => e.CooledContainer == false && e.ValuableContainer == false).ToList();
+            ////Sorteed de containers op waardevol
+            //sortedContainers = sortedContainers.OrderBy(e => e.ValuableContainer).ToList();
+
             //Loopt door elke container heen die gesorteerd zijn.
             foreach (var container in sortedContainers)
             {

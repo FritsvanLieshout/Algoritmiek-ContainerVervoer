@@ -5,24 +5,24 @@ namespace Models
 {
     public class Stack
     {
-        public bool FirstRow { get; }
-        public bool LastRow { get; }
-        public bool CooledContainer { get; }
+        public bool Front { get; }
+        public bool Back { get; }
+        //public bool CooledContainer { get; }
         public List<Container> Containers { get; }
 
-        public Stack(bool first, bool last)
+        public Stack(bool front, bool back)
         {
-            FirstRow = first;
-            LastRow = last;
-            CooledContainer = first;
+            Front = front;
+            Back = back;
+            //CooledContainer = front;
             Containers = new List<Container>();
         }
 
         public Stack()
         {
-            FirstRow = false;
-            LastRow = false;
-            CooledContainer = false;
+            Front = false;
+            Back = false;
+            //CooledContainer = false;
             Containers = new List<Container>();
         }
 
@@ -50,11 +50,15 @@ namespace Models
             return Containers.Count > 0 && Containers.Last().ValuableContainer;
         }
 
-        public bool IsContainerAllowed(Container container)
+        public bool IsContainerAllowed(Container container, Ship ship, int width, int length)
         {
-            if (container.ValuableContainer && !FirstRow && !LastRow) return false;
+            if (container.ValuableContainer && Front) return false;
 
-            if (container.CooledContainer && !CooledContainer) return false;
+            if (container.ValuableContainer && Back) return false;
+
+            if (container.CooledContainer && !Front) return false;
+
+            if (container.ValuableContainer && CheckSpaceForValuable(ship, width, length)) return false;
 
             if (IsTopContainerValuable()) return false;
 
@@ -63,9 +67,28 @@ namespace Models
             return true;
         }
 
-        public bool AddContainer(Container container)
+        public bool CheckSpaceForValuable(Ship ship, int width, int length)
         {
-            if (!IsContainerAllowed(container)) return false;
+            if (ship.Stack[width, length -= 1].HaveContainerSpace(ship.Stack[width, length].Containers.Count, Containers.Count)) return true;
+
+            length += 2;
+            if (length > ship.Stack.Length) return true;
+
+            if (ship.Stack[width, length].HaveContainerSpace(ship.Stack[width, length].Containers.Count, Containers.Count)) return true;
+            else return false;
+
+        }
+
+        public bool HaveContainerSpace(int height, int current)
+        {
+            if (current + 1 <= height) return true;
+
+            else return false;
+        }
+
+        public bool AddContainer(Container container, Ship ship, int width, int length)
+        {
+            if (!IsContainerAllowed(container, ship, width, length)) return false;
 
             foreach (var containerList in Containers)
             {
@@ -78,7 +101,7 @@ namespace Models
 
         public override string ToString()
         {
-            return Containers.Count.ToString() + ", " + FirstRow.ToString() + ", " + LastRow.ToString();
+            return Containers.Count.ToString() + ", " + Front.ToString() + ", " + Back.ToString();
         }
     }
 }

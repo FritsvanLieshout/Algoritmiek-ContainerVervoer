@@ -9,6 +9,7 @@ namespace AlgoritmiekContainerVervoer
     public partial class Form1 : Form
     {
         public Ship Ship;
+        public ShipLogic ShipLogic;
         public List<Container> Containers;
 
         public Form1()
@@ -18,7 +19,7 @@ namespace AlgoritmiekContainerVervoer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            Containers = new List<Container>();
             cbTypesContainer.SelectedIndex = -1;
             cbTypesContainer.DataSource = Enum.GetValues(typeof(Enums.TypOfContainers.Types));
             InfoShip.Visible = false;
@@ -29,15 +30,19 @@ namespace AlgoritmiekContainerVervoer
         {
             var length = (int)nudLength.Value;
             var width = (int)nudWidth.Value;
+            var weight = (int)nudShipWeight.Value;
 
             InfoShip.Visible = true;
             ConfigShip.Visible = false;
             lblLength.Text = length.ToString();
             lblWidth.Text = width.ToString();
+            lblShipWeight.Text = weight.ToString();
+            lblContainersWeight.Text = "0";
             btnAddContainer.Enabled = true;
-            btnSort.Enabled = true;
-            FillTestData();
-            lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
+
+            ShipLogic = new ShipLogic(width, length, weight);
+            //FillTestData();
+            //lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
         }
 
         private void BtnAddContainer_Click(object sender, EventArgs e)
@@ -60,27 +65,43 @@ namespace AlgoritmiekContainerVervoer
 
             Containers.Add(container);
             lbUnsortedContainers.Items.Add(container);
-            lblCountUnsorted.Text = Containers.Count.ToString();
-            //enable button if value > 50%?
+
+            ShipLogic.Ship.Weight += container.Weight;
+            lblContainersWeight.Text = ShipLogic.Ship.Weight.ToString();
+            lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
+            if (ShipLogic.Ship.Weight / 2 <= ShipLogic.Ship.MaxWeight)
+            {
+                btnSort.Enabled = true;
+            }
         }
 
         private void BtnSort_Click(object sender, EventArgs e)
         {
-            //var length = (int)nudLength.Value;
-            //var width = (int)nudWidth.Value;
+            //ShipLogic logic = new ShipLogic(width, length, weight);
+            var ship = ShipLogic.SortContainers(Containers);
 
-            //ShipLogic logic = new ShipLogic(width, length);
-            //var ship = logic.SortContainers(Containers);
+            for (var i = 0; i < ShipLogic.Ship.Width; i++)
+            {
+                for (var j = 0; j < ShipLogic.Ship.Length; j++)
+                {
+                    //for (var c = 0; c < ship.Stack[i, j].Containers.Count; c++)
+                    //{
+                        lbSortedContainers.Items.Add(j.ToString() + "." + i.ToString());
+                        // foreach (Stack stack in ship.Stack)
+                        foreach (var container in ship.Stack[i, j].Containers)
+                        {
+                            //lbRows.Items.Add(c + ":");
+                            lbSortedContainers.Items.Add(container);
+                        }
+                    //}
+                }
+            }
 
-            //foreach (Stack stack in ship.Stack)
-            //{
-            //    lbRows.Items.Add(stack);
-            //}
 
-            //foreach (Container container in logic.UnSortedContainers)
-            //{
-            //    lbUnsortedContainers.Items.Add(container);
-            //}
+            foreach (Container container in ShipLogic.UnSortedContainers)
+            {
+                lbUnsortedContainers.Items.Add(container);
+            }
 
             lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
         }
@@ -163,13 +184,21 @@ namespace AlgoritmiekContainerVervoer
 
             var length = (int)nudLength.Value;
             var width = (int)nudWidth.Value;
+            var weight = (int)nudShipWeight.Value;
 
-            ShipLogic logic = new ShipLogic(width, length);
+            ShipLogic logic = new ShipLogic(width, length, weight);
             var ship = logic.SortContainers(Containers);
 
             foreach (Stack stack in ship.Stack)
             {
-                lbRows.Items.Add(stack);
+                //for (var i = 0; i < logic.Ship.Width; i++)
+                //{
+                //    for (var j = 0; j < logic.Ship.Length; j++)
+                //    {
+                //        lbRows.Items.Add(i + ", " + j);
+                lbSortedContainers.Items.Add(stack);
+                //    }
+                //}
             }
 
             foreach (Container container in logic.UnSortedContainers)
@@ -180,15 +209,15 @@ namespace AlgoritmiekContainerVervoer
 
         private void LbRows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbSortedContainers.Items.Clear();
+            //lbSortedContainers.Items.Clear();
 
-            var stack = lbRows.SelectedItem as Stack;
-            var containerList = stack.Containers;
+            //var stack = lbSortedContainers.SelectedItem as Stack;
+            //var containerList = stack.Containers;
 
-            foreach (var container in containerList)
-            {
-                lbSortedContainers.Items.Add(container);
-            }
+            //foreach (var container in containerList)
+            //{
+            //    lbSortedContainers.Items.Add(container);
+            //}
         }
     }
 }

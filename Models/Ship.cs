@@ -9,15 +9,17 @@
         //public int Right { get; set; }
         //public int Median { get; set; }
         public int Weight { get; set; }
+        public int MaxWeight { get; set; }
 
         public Stack[,] Stack { get; private set; }
 
-        public Ship(int width, int length)
+        public Ship(int width, int length, int maxWeight)
         {
             Length = length;
             Width = width;
             Stack = new Stack[width, length];
-            Weight = 1000000;
+            Weight = 0;
+            MaxWeight = maxWeight;
 
             for (int i = 0; i < width; i++)
             {
@@ -55,6 +57,58 @@
             }
             return weight;
         }
+
+        //public bool IsEven(Container container, int width, int col)
+        //{
+        //    Left = GetColumnsWeight(0, Median);
+        //    Right = GetColumnsWeight(Median, width);
+
+        //    if (col < Median) { Left += container.Weight; }
+        //    else { Right += container.Weight; }
+        //    return false;
+        //}
+
+        //public bool IsUneven(Container container, int width, int col)
+        //{
+        //    var isUneven = width % 2 != 0;
+        //    if (isUneven)
+        //    {
+        //        Left = GetColumnsWeight(0, Median + 1); Right = GetColumnsWeight(Median + 1, width);
+        //        if (col < Median + 1) { Left += container.Weight; }
+        //        else if (col > Median + 1) { Right += container.Weight; }
+        //        else { IsEven(container, width, col); }
+        //    }
+        //    return false;
+        //}
+
+        //public bool CalcPerc()
+        //{
+        //    var weight = Left + Right;
+        //    int percLeft;
+        //    int percRight;
+        //    int percDifference;
+
+        //    if (weight != 0) { percLeft = Left / weight * 100; percRight = Right / weight * 100; }
+        //    else { percLeft = 0; percRight = 0; }
+
+        //    if (percLeft < percRight) { percDifference = percRight - percLeft; }
+        //    else { percDifference = percLeft - percRight; }
+
+        //    if (percDifference > 20 && percDifference <= 100) return false;
+
+        //    return true;
+        //}
+
+        //public bool CalcBalance(Container container, int col)
+        //{
+        //    var width = Stack.GetLength(0);
+        //    Median = width / 2;
+
+        //    if (col == Median) return true;
+        //    if (IsUneven(container, width, col)) return true;
+        //    else if (IsEven(container, width, col)) return true;
+        //    else return false;
+        //}
 
         //Controleerd bij het toevoegen van een container op de huidige kolom of het schip zijn balans houdt.
         public bool CheckBalance(Container container, int col)
@@ -143,11 +197,23 @@
                 for (var j = 0; j < Length; j++)
                 {
                     //Contoleerd of de container kan worden toegevoegd.
-                    if (Stack[i, j].AddContainer(container)) return true;
+                    if (Stack[i, j].AddContainer(container, this, i, j)) return true;
                 }
             }
 
             return false;
+        }
+
+        public bool IsFrontAndBackClear(Container container, int width, int length)
+        {
+            //if (Stack[x - 1, y].HasContainer()) return false;
+            //else if (Stack[x + 1, y].HasContainer()) return false;
+            return true;
+        }
+
+        public override string ToString()
+        {
+            return "";
         }
     }
 }
