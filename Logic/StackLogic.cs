@@ -1,6 +1,6 @@
 ﻿namespace Logic
 {
-    internal class StackLogic
+    public class StackLogic
     {
     }
 }

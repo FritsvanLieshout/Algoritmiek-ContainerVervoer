@@ -10,9 +10,9 @@ namespace Logic
 
         public List<Container> UnSortedContainers { get; private set; } = new List<Container>();
 
-        public ShipLogic(int width, int length, int weight)
+        public ShipLogic(int width, int length)
         {
-            Ship = new Ship(width, length, weight);
+            Ship = new Ship(width, length);
         }
 
         /*public int GetColumnsWeight(int col1, int col2)
@@ -130,14 +130,8 @@ namespace Logic
         public Ship SortContainers(List<Container> containers)
         {
             var sortedContainers = containers.Where(c => c.CooledContainer).OrderByDescending(c => c.Weight).ToList();
-
             sortedContainers.AddRange(containers.Where(e => e.ValuableContainer == false && e.CooledContainer == false).OrderByDescending(c => c.Weight).ToList());
-
             sortedContainers.AddRange(containers.Where(e => e.ValuableContainer).OrderByDescending(c => c.Weight).ToList());
-            //var sortedContainers = containers.OrderBy(e => e.CooledContainer).ToList();
-            //sortedContainers = sortedContainers.OrderBy(e => e.CooledContainer == false && e.ValuableContainer == false).ToList();
-            ////Sorteed de containers op waardevol
-            //sortedContainers = sortedContainers.OrderBy(e => e.ValuableContainer).ToList();
 
             //Loopt door elke container heen die gesorteerd zijn.
             foreach (var container in sortedContainers)
@@ -149,7 +143,8 @@ namespace Logic
                     UnSortedContainers.Remove(container);
                 }
             }
-           return Ship;
+
+            return Ship;
         }
     }
 }

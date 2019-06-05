@@ -35,6 +35,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.InfoShip = new System.Windows.Forms.GroupBox();
+            this.lblContainersWeight = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblShipWeight = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.lblCountUnsorted = new System.Windows.Forms.Label();
             this.lblWidth = new System.Windows.Forms.Label();
             this.lblLength = new System.Windows.Forms.Label();
@@ -51,12 +55,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbSortedContainers = new System.Windows.Forms.ListBox();
-            this.lblShipWeight = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.nudShipWeight = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblContainersWeight = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.ConfigShip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLength)).BeginInit();
@@ -64,13 +62,10 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudContainerWeight)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudShipWeight)).BeginInit();
             this.SuspendLayout();
             // 
             // ConfigShip
             // 
-            this.ConfigShip.Controls.Add(this.nudShipWeight);
-            this.ConfigShip.Controls.Add(this.label8);
             this.ConfigShip.Controls.Add(this.nudWidth);
             this.ConfigShip.Controls.Add(this.nudLength);
             this.ConfigShip.Controls.Add(this.btnSetShip);
@@ -145,6 +140,42 @@
             this.InfoShip.TabIndex = 5;
             this.InfoShip.TabStop = false;
             this.InfoShip.Text = "Information Ship";
+            // 
+            // lblContainersWeight
+            // 
+            this.lblContainersWeight.AutoSize = true;
+            this.lblContainersWeight.Location = new System.Drawing.Point(232, 93);
+            this.lblContainersWeight.Name = "lblContainersWeight";
+            this.lblContainersWeight.Size = new System.Drawing.Size(46, 18);
+            this.lblContainersWeight.TabIndex = 9;
+            this.lblContainersWeight.Text = "label8";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 93);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(130, 18);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Containers weight:";
+            // 
+            // lblShipWeight
+            // 
+            this.lblShipWeight.AutoSize = true;
+            this.lblShipWeight.Location = new System.Drawing.Point(232, 75);
+            this.lblShipWeight.Name = "lblShipWeight";
+            this.lblShipWeight.Size = new System.Drawing.Size(46, 18);
+            this.lblShipWeight.TabIndex = 7;
+            this.lblShipWeight.Text = "label7";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 18);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Ship weight:";
             // 
             // lblCountUnsorted
             // 
@@ -320,79 +351,6 @@
             this.lbSortedContainers.Name = "lbSortedContainers";
             this.lbSortedContainers.Size = new System.Drawing.Size(533, 324);
             this.lbSortedContainers.TabIndex = 14;
-            this.lbSortedContainers.SelectedIndexChanged += new System.EventHandler(this.LbRows_SelectedIndexChanged);
-            // 
-            // lblShipWeight
-            // 
-            this.lblShipWeight.AutoSize = true;
-            this.lblShipWeight.Location = new System.Drawing.Point(232, 75);
-            this.lblShipWeight.Name = "lblShipWeight";
-            this.lblShipWeight.Size = new System.Drawing.Size(46, 18);
-            this.lblShipWeight.TabIndex = 7;
-            this.lblShipWeight.Text = "label7";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 18);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Ship weight:";
-            // 
-            // nudShipWeight
-            // 
-            this.nudShipWeight.Increment = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nudShipWeight.Location = new System.Drawing.Point(181, 86);
-            this.nudShipWeight.Maximum = new decimal(new int[] {
-            2500000,
-            0,
-            0,
-            0});
-            this.nudShipWeight.Minimum = new decimal(new int[] {
-            250000,
-            0,
-            0,
-            0});
-            this.nudShipWeight.Name = "nudShipWeight";
-            this.nudShipWeight.Size = new System.Drawing.Size(120, 24);
-            this.nudShipWeight.TabIndex = 8;
-            this.nudShipWeight.Value = new decimal(new int[] {
-            250000,
-            0,
-            0,
-            0});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 88);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(87, 18);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Ship weight:";
-            // 
-            // lblContainersWeight
-            // 
-            this.lblContainersWeight.AutoSize = true;
-            this.lblContainersWeight.Location = new System.Drawing.Point(232, 93);
-            this.lblContainersWeight.Name = "lblContainersWeight";
-            this.lblContainersWeight.Size = new System.Drawing.Size(46, 18);
-            this.lblContainersWeight.TabIndex = 9;
-            this.lblContainersWeight.Text = "label8";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 93);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(130, 18);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "Containers weight:";
             // 
             // Form1
             // 
@@ -416,7 +374,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudContainerWeight)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudShipWeight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,8 +403,6 @@
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbSortedContainers;
-        private System.Windows.Forms.NumericUpDown nudShipWeight;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblShipWeight;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblContainersWeight;

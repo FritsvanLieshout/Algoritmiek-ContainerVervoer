@@ -42,7 +42,7 @@ namespace Models
         {
             if (Containers.Count < 1) return true;
 
-            return Containers.First().TopWeight + container.Weight < 120000;
+            return Containers.First().TopWeight + container.Weight <= 120000;
         }
 
         public bool IsTopContainerValuable()
