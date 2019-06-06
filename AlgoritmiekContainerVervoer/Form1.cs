@@ -68,6 +68,7 @@ namespace AlgoritmiekContainerVervoer
             ShipLogic.Ship.Weight += container.Weight;
             lblContainersWeight.Text = ShipLogic.Ship.Weight.ToString();
             lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
+            //TODO Check if containers weight > 50 % of ship weight
             if (ShipLogic.Ship.Weight / 2 <= ShipLogic.Ship.MaxWeight)
             {
                 btnSort.Enabled = true;
@@ -76,32 +77,22 @@ namespace AlgoritmiekContainerVervoer
 
         private void BtnSort_Click(object sender, EventArgs e)
         {
-            //ShipLogic logic = new ShipLogic(width, length, weight);
             lbSortedContainers.Items.Clear();
             var ship = ShipLogic.SortContainers(Containers);
 
-            for (int i = 0; i < ShipLogic.Ship.Length; i++)
+            for (int l = 0; l < ShipLogic.Ship.Length; l++)
             {
-                for (int j = 0; j < ShipLogic.Ship.Width; j++)
+                for (int w = 0; w < ShipLogic.Ship.Width; w++)
                 {
-                    lbSortedContainers.Items.Add(i.ToString() + "." + j.ToString());
-                    // foreach (Stack stack in ship.Stack)
-
-                    //for (var c = 0; c < ship.Stack[i, j].Containers.Count; c++)
-                    //{
-                    //}
-
-                    //foreach (var container in ship.Stack[i, j].Containers)
-                    //{
-                        foreach (var container in ship.Stack[j, i].Containers)
-                        {
-                            lbSortedContainers.Items.Add(/*c + "," + */container);
-                        }
-                        //lbSortedContainers.Items.Add(container);
-                    
+                    lbSortedContainers.Items.Add(l.ToString() + "." + w.ToString());
+                    foreach (var container in ship.Stack[w, l].Containers)
+                    {
+                        lbSortedContainers.Items.Add(container);
+                    }
                 }
             }
 
+            lbUnsortedContainers.Items.Clear();
             foreach (Container container in ShipLogic.UnSortedContainers)
             {
                 lbUnsortedContainers.Items.Add(container);

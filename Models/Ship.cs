@@ -7,6 +7,7 @@
         public int Left { get; set; }
         public int Right { get; set; }
         public decimal Median { get; set; }
+        public int Height { get; set; }
         public int Weight { get; set; }
         public int MaxWeight { get; set; }
 
@@ -19,79 +20,111 @@
             Stack = new Stack[width, length];
             Weight = 0;
             Median = decimal.Divide(width, 2);
-            MaxWeight = (width * length) * 150000;
+            MaxWeight = CalculateMaxWeightOfShip();
 
-            for (int i = 0; i < width; i++)
+            for (int w = 0; w < width; w++)
             {
-                for (int j = 0; j < length; j++)
+                for (int l = 0; l < length; l++)
                 {
-                    if (j == 0)
+                    if (l == 0)
                     {
                         //De stapel van containers laten weten dat dit de 1e rij is.
-                        Stack[i, j] = new Stack(true, false);
+                        Stack[w, l] = new Stack(true, false);
                     }
-                    else if (j == length - 1)
+                    else if (l == length - 1)
                     {
                         //De stapel van containers laten weten dat dit de laatste rij is.
-                        Stack[i, j] = new Stack(false, true);
+                        Stack[w, l] = new Stack(false, true);
                     }
                     else
                     {
                         //De stapel van containers laten weten dat dit de middelste rij is.
-                        Stack[i, j] = new Stack(false, false);
+                        Stack[w, l] = new Stack(false, false);
                     }
                 }
             }
         }
 
-        public void SetWeight(int i, Container container, int even, int uneven)
+        public int CalculateMaxWeightOfShip()
         {
-            if (i < Median - even) Left += container.Weight;
+            var maxWeight = (Width * Length) * 150000;
+            return maxWeight;
+        }
 
-            if (i > Median - uneven) Right += container.Weight;
+        public void WeightSetter(int width, Container container, int even, int uneven)
+        {
+            if (width < Median - even) Left += container.Weight;
+
+            if (width > Median - uneven) Right += container.Weight;
+        }
+
+        public bool TryToAddContainer(int weight, int length, int height, Container container)
+        {
+            if (Stack[weight, length].Containers.Count == height)
+            {
+                if (Stack[weight, length].AddContainer(container, this, weight, length))
+                {
+                    if (Median % 2 == 0)
+                    {
+                        WeightSetter(weight, container, 0, 1);
+                    }
+                    else
+                    {
+                        WeightSetter(weight, container, 1, 0);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool PlaceContainerToRight(int length, int mid, Container container, int height)
+        {
+            for (int width = mid - 1; width < Width; width++)
+            {
+                if (TryToAddContainer(width, length, height, container)) return true;
+                else continue;
+            }
+            return false;
+        }
+
+        public bool PlaceContainerToLeft(int length, int mid, Container container, int height)
+        {
+            for (int width = 0; width < mid; width++)
+            {
+                if (TryToAddContainer(width, length, height, container)) return true;
+                else continue;
+            }
+            return false;
         }
 
         public bool AddContainer(Container container)
         {
-            for (int i = 0; i < Length; i++)
+            for (int height = 0; height <= 30; height++)
             {
-                int mid = (int)Median + 1;
-                if (Left > Right)
+                for (int length = 0; length < Length; length++)
                 {
-                    for (int j = mid - 1; j < Width; j++)
+                    var mid = (int)Median + 1;
+                    if (Left > Right)
                     {
-                        if (Stack[j, i].AddContainer(container, this, j, i))
+                        if (PlaceContainerToRight(length, mid, container, height))
                         {
-                            if (Median % 2 != 0)
-                            {
-                                SetWeight(j, container, 1, 0);
-                            }
-                            else
-                            {
-                                SetWeight(j, container, 0, 1);
-                            }
+                            Weight += container.Weight;
                             return true;
                         }
+                        else continue;
                     }
-                }
-                else
-                {
-                    for (int j = 0; j < mid; j++)
+                    else
                     {
-                        if (Stack[j, i].AddContainer(container, this, j, i))
+                        if (PlaceContainerToLeft(length, mid, container, height))
                         {
-                            if (Median % 2 != 0)
-                            {
-                                SetWeight(j, container, 1, 0);
-                            }
-                            else
-                            {
-                                SetWeight(j, container, 0, 1);
-                            }
+                            Weight += container.Weight;
                             return true;
                         }
+                        else continue;
                     }
                 }
+                continue;
             }
             return false;
         }

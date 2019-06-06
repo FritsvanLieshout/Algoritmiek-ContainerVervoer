@@ -7,14 +7,12 @@ namespace Models
     {
         public bool Front { get; }
         public bool Back { get; }
-        //public bool CooledContainer { get; }
         public List<Container> Containers { get; }
 
         public Stack(bool front, bool back)
         {
             Front = front;
             Back = back;
-            //CooledContainer = front;
             Containers = new List<Container>();
         }
 
@@ -22,14 +20,12 @@ namespace Models
         {
             Front = false;
             Back = false;
-            //CooledContainer = false;
             Containers = new List<Container>();
         }
 
         public int GetWeight()
         {
             var weight = 0;
-
             foreach (var container in Containers)
             {
                 weight += container.Weight;
@@ -67,6 +63,12 @@ namespace Models
             return true;
         }
 
+        public bool HaveContainerSpace(int height, int current)
+        {
+            if (current + 1 <= height) return true;
+            else return false;
+        }
+
         public bool CheckSpaceForValuable(Ship ship, int width, int length)
         {
             if (ship.Stack[width, length -= 1].HaveContainerSpace(ship.Stack[width, length].Containers.Count, Containers.Count)) return true;
@@ -75,14 +77,6 @@ namespace Models
             if (length > ship.Stack.Length) return true;
 
             if (ship.Stack[width, length].HaveContainerSpace(ship.Stack[width, length].Containers.Count, Containers.Count)) return true;
-            else return false;
-
-        }
-
-        public bool HaveContainerSpace(int height, int current)
-        {
-            if (current + 1 <= height) return true;
-
             else return false;
         }
 
