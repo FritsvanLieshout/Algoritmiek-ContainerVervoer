@@ -55,6 +55,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbSortedContainers = new System.Windows.Forms.ListBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblBalance = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.ConfigShip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLength)).BeginInit();
@@ -233,6 +236,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnSort);
             this.groupBox1.Controls.Add(this.lbUnsortedContainers);
             this.groupBox1.Controls.Add(this.label6);
@@ -263,7 +267,7 @@
             // 
             this.lbUnsortedContainers.FormattingEnabled = true;
             this.lbUnsortedContainers.ItemHeight = 18;
-            this.lbUnsortedContainers.Location = new System.Drawing.Point(266, 28);
+            this.lbUnsortedContainers.Location = new System.Drawing.Point(266, 42);
             this.lbUnsortedContainers.Name = "lbUnsortedContainers";
             this.lbUnsortedContainers.Size = new System.Drawing.Size(353, 220);
             this.lbUnsortedContainers.TabIndex = 12;
@@ -334,6 +338,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.lblBalance);
             this.groupBox2.Controls.Add(this.lbSortedContainers);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(13, 326);
@@ -351,6 +357,35 @@
             this.lbSortedContainers.Name = "lbSortedContainers";
             this.lbSortedContainers.Size = new System.Drawing.Size(533, 324);
             this.lbSortedContainers.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(263, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(149, 18);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Unsorted Containers:";
+            // 
+            // lblBalance
+            // 
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBalance.Location = new System.Drawing.Point(712, 21);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new System.Drawing.Size(16, 18);
+            this.lblBalance.TabIndex = 15;
+            this.lblBalance.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(579, 21);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(133, 18);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Balance in percent:";
             // 
             // Form1
             // 
@@ -374,6 +409,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudContainerWeight)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -407,6 +443,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblContainersWeight;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblBalance;
     }
 }
 

@@ -19,8 +19,8 @@
             Width = width;
             Stack = new Stack[width, length];
             Weight = 0;
-            Median = decimal.Divide(width, 2);
-            MaxWeight = CalculateMaxWeightOfShip();
+            MaxWeight = CalculateMaxWeightOfShip(width, length);
+            Median = CalculateMedian(width);
 
             for (int w = 0; w < width; w++)
             {
@@ -45,10 +45,14 @@
             }
         }
 
-        public int CalculateMaxWeightOfShip()
+        public int CalculateMaxWeightOfShip(int width, int length)
         {
-            var maxWeight = (Width * Length) * 150000;
-            return maxWeight;
+            return (width * length) * 150000;
+        }
+
+        public decimal CalculateMedian(int width)
+        {
+            return decimal.Divide(width, 2);
         }
 
         public void WeightSetter(int width, Container container, int even, int uneven)
