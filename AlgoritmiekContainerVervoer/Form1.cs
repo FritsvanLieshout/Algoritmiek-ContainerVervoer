@@ -69,7 +69,7 @@ namespace AlgoritmiekContainerVervoer
             lblContainersWeight.Text = ShipLogic.Ship.Weight.ToString();
             lblCountUnsorted.Text = lbUnsortedContainers.Items.Count.ToString();
             //TODO Check if containers weight > 50 % of ship weight
-            if (ShipLogic.Ship.Weight / 2 <= ShipLogic.Ship.MaxWeight)
+            if (ShipLogic.Ship.Weight >= ShipLogic.Ship.MaxWeight / 2)
             {
                 btnSort.Enabled = true;
             }

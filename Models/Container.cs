@@ -3,9 +3,9 @@
     public class Container
     {
         public int Weight { get; set; }
-        public int TopWeight { get; private set; }
-        public bool CooledContainer { get; set; }
+        public int TopWeight { get; set; }
         public bool ValuableContainer { get; set; }
+        public bool CooledContainer { get; set; }
 
         public Container(int weight, bool valuable, bool cooled)
         {

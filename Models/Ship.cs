@@ -2,8 +2,8 @@
 {
     public class Ship
     {
-        public int Length { get; }
-        public int Width { get; }
+        public int Length { get; set; }
+        public int Width { get; set; }
         public int Left { get; set; }
         public int Right { get; set; }
         public decimal Median { get; set; }
@@ -11,7 +11,7 @@
         public int Weight { get; set; }
         public int MaxWeight { get; set; }
 
-        public Stack[,] Stack { get; private set; }
+        public Stack[,] Stack { get; set; }
 
         public Ship(int width, int length)
         {
@@ -43,6 +43,12 @@
                     }
                 }
             }
+        }
+
+        public bool CheckWeight(int weight, int max)
+        {
+            if (weight >= max / 2 && weight < max) return true;
+            else return false;
         }
 
         public int CalculateMaxWeightOfShip(int width, int length)

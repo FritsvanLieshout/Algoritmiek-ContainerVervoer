@@ -5,9 +5,9 @@ namespace Models
 {
     public class Stack
     {
-        public bool Front { get; }
-        public bool Back { get; }
-        public List<Container> Containers { get; }
+        public bool Front { get; set; }
+        public bool Back { get; set; }
+        public List<Container> Containers { get; set; }
 
         public Stack(bool front, bool back)
         {
@@ -21,17 +21,6 @@ namespace Models
             Front = false;
             Back = false;
             Containers = new List<Container>();
-        }
-
-        public int GetWeight()
-        {
-            var weight = 0;
-            foreach (var container in Containers)
-            {
-                weight += container.Weight;
-            }
-
-            return weight;
         }
 
         public bool IsWeightAllowed(Container container)

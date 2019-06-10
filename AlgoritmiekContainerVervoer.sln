@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{F87CEC1B-BDB5-44CC-A61F-93D37E446905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestContainerVervoer", "UnitTestContainerVervoer\UnitTestContainerVervoer.csproj", "{30793B18-3ED5-44F6-B5CE-9067A5C5181E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F87CEC1B-BDB5-44CC-A61F-93D37E446905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F87CEC1B-BDB5-44CC-A61F-93D37E446905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F87CEC1B-BDB5-44CC-A61F-93D37E446905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30793B18-3ED5-44F6-B5CE-9067A5C5181E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30793B18-3ED5-44F6-B5CE-9067A5C5181E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30793B18-3ED5-44F6-B5CE-9067A5C5181E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30793B18-3ED5-44F6-B5CE-9067A5C5181E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
