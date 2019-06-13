@@ -68,19 +68,19 @@
             if (width > Median - uneven) Right += container.Weight;
         }
 
-        public bool TryToAddContainer(int weight, int length, int height, Container container)
+        public bool TryToAddContainer(int width, int length, int height, Container container)
         {
-            if (Stack[weight, length].Containers.Count == height)
+            if (Stack[width, length].Containers.Count == height)
             {
-                if (Stack[weight, length].AddContainer(container, this, weight, length))
+                if (Stack[width, length].AddContainer(container, this, width, length))
                 {
                     if (Median % 2 == 0)
                     {
-                        WeightSetter(weight, container, 0, 1);
+                        WeightSetter(width, container, 0, 1);
                     }
                     else
                     {
-                        WeightSetter(weight, container, 1, 0);
+                        WeightSetter(width, container, 1, 0);
                     }
                     return true;
                 }
