@@ -1,0 +1,35 @@
+Stap voor stap uitleggen hoe het algoritme werkt:
+
+1. 	Je stelt het schip in met de lengte en breedte (in containers) in, hierbij wordt ook meteen in de constructor
+	van het schip het midden en het maximale gewicht berekend.
+
+2.	Je voert een x-aantal containers toe tot dat de helft van het schip gevult is (gekoelde, waardevolle of standaard containers).
+
+3. 	Het algoritme wordt uitgevoerd:
+
+3.1	Je kijkt van container tot container waar die geplaatst moet worden, als links groter is dan rechts, wordt de container rechts 
+	geplaatst. Zo niet dan wordt de container links geplaatst.
+
+3.2 	In de logic laag worden de containers die je toegevoegd hebt gesorteerd op type container en daarna worden ze geordend op gewicht.
+	Ze worden dan toegevoegd. in de lijst van ongesorteerde containers.
+
+3.3	De containers uit de ongesorteerde lijst worden doorgestuurd naar de volgende klasse, 
+	Daarna wordt de container in een stapel geplaatst, hierbij wordt ook het gewicht van links en rechts bijgehouden. 
+	(ik kijk per container in welke stapel de container moet).
+	-> In de stapel wordt er gekeken of de container toegestaan is op die plek. Met behulp van een aantal checks.
+	-> Dit zijn de checks die uitgevoerd worden: 	- of de gekoelde container in de voorste rij staat.
+							- of de waardevolle container plaatst heeft in de stapel(voor en achter naderbaar).
+	   						- of dat het gewicht van de container toegstaan is (Max 120 ton op container).
+	-> Na de checks dat de container toegevoegd is wordt het gewicht van links of van rechts bijgewerkt met het gewicht van de container.
+
+4.1	De containers die gesorteerd zijn in het algoritme worden per stapel weergeven in een lijst 
+	(Je ziet dan in 0.0 zitten x-aantal containers, etc.).
+4.2	Er zijn ook containers die niet gesorteerd zijn, deze staan dan nog steeds in de lijst met ongesorteerde containers.
+
+
+Test: 	- 15x 30 ton gekoelde
+	- 26x 30 ton normale
+	- 12x 10 ton normale
+	- 3x 20 ton waardevolle
+
+141 ton
